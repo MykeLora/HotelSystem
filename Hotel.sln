@@ -5,15 +5,13 @@ VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Domain", "Hotel.Domain\Hotel.Domain.csproj", "{53E5BAB5-6370-4256-A658-BB4C13D17540}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Api", "Hotel.Web\Hotel.Api.csproj", "{02ABA386-2694-4D14-8C14-98CC63338937}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Infraestructure", "Hotel.Infraestructure\Hotel.Infraestructure.csproj", "{6AC97E02-2741-4E15-9678-B547A5616F93}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Application", "Hotel.Application\Hotel.Application.csproj", "{C79AAE9A-6877-452C-A225-8100F9F9896E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Ioc", "Hotel.Ioc\Hotel.Ioc.csproj", "{251CE670-8329-4C28-AC0C-15646C88D25E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Web", "..\Hotel.Web\Hotel.Web\Hotel.Web.csproj", "{3DA76465-A32D-4078-AA24-4E35B2505403}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Web", "..\Hotel.Web\Hotel.Web\Hotel.Web.csproj", "{3DA76465-A32D-4078-AA24-4E35B2505403}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{53E5BAB5-6370-4256-A658-BB4C13D17540}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53E5BAB5-6370-4256-A658-BB4C13D17540}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53E5BAB5-6370-4256-A658-BB4C13D17540}.Release|Any CPU.Build.0 = Release|Any CPU
-		{02ABA386-2694-4D14-8C14-98CC63338937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02ABA386-2694-4D14-8C14-98CC63338937}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02ABA386-2694-4D14-8C14-98CC63338937}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02ABA386-2694-4D14-8C14-98CC63338937}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6AC97E02-2741-4E15-9678-B547A5616F93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6AC97E02-2741-4E15-9678-B547A5616F93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AC97E02-2741-4E15-9678-B547A5616F93}.Release|Any CPU.ActiveCfg = Release|Any CPU
