@@ -1,6 +1,7 @@
 ﻿using Hotel.Domain.Repository;
 using Hotel.Infraestructure.Context;
 using Microsoft.EntityFrameworkCore;
+using Northwind.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace Hotel.Infraestructure.Core
 
         public virtual List<TEntity> GetEntities()
         {
-            return entities.ToList();
+            return entities.Where(entity => entity != null).ToList();
         }
 
         public virtual TEntity GetEntity(int id)
@@ -44,16 +45,21 @@ namespace Hotel.Infraestructure.Core
         public virtual void Remove(TEntity entity)
         {
             this.entities.Remove(entity);
+            this.context.SaveChanges();
         }
 
         public virtual void Save(TEntity entity)
         {
             this.entities.Add(entity);
+            this.context.SaveChanges();
         }
 
         public virtual void Update(TEntity entity)
         {
             this.entities.Update(entity);
+            this.context.SaveChanges();
+
         }
+
     }
 }

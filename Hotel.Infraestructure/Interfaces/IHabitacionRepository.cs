@@ -1,5 +1,6 @@
 ﻿using Hotel.Domain.Entities;
 using Hotel.Domain.Repository;
+using Hotel.Infraestructure.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace Hotel.Infraestructure.Interfaces
 {
     public interface IHabitacionRepository : IBaseRepository<Habitacion>
     {
+        List<HabitacionModel> GetHabitacionByCategoria(int categoriaId);
     }
 }

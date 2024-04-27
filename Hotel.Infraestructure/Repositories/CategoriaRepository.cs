@@ -1,5 +1,6 @@
 ﻿using Hotel.Infraestructure.Context;
 using Hotel.Infraestructure.Core;
+using Hotel.Infraestructure.Exceptions;
 using Hotel.Infraestructure.Interfaces;
 using Microsoft.Extensions.Logging;
 using Northwind.Domain.Entities;
@@ -12,15 +13,20 @@ using System.Threading.Tasks;
 
 namespace Hotel.Infraestructure.Repositories
 {
-    public class CategoryRepository : BaseRepository<Categoria>, ICategoryRepository
+    public class CategoriaRepository : BaseRepository<Categoria>, ICategoryRepository
     {
         private readonly HotelContext context;
         private readonly ILogger<Categoria> logger;
 
-        public CategoryRepository(HotelContext context, ILogger<Categoria> logger) : base(context)
+        public CategoriaRepository(HotelContext context, ILogger<Categoria> logger) : base(context)
         {
             this.context = context;
             this.logger = logger;
+        }
+
+        public override List<Categoria> GetEntities()
+        {
+            return base.GetEntities().Where(ca => !ca.Eliminado).ToList();
         }
 
         public override void Save(Categoria entity)
@@ -31,6 +37,9 @@ namespace Hotel.Infraestructure.Repositories
                 {
                     this.logger.LogWarning("La categoria ya se encuentra registrada");
                 }
+
+                context.Categoria.Add(entity);
+                context.SaveChanges();
 
             }
             catch(Exception ex)
@@ -45,10 +54,10 @@ namespace Hotel.Infraestructure.Repositories
             {
                 var categoryToUpdate = this.GetEntity(entity.Id);
 
-                //if(categoryToUpdate == null)
-                //{
-                //    throw new 
-                //}
+                if (categoryToUpdate == null)
+                {
+                    throw new CategoriaException("La categoria no existe");
+                }
 
                 categoryToUpdate.Descripcion = categoryToUpdate.Descripcion;
                 categoryToUpdate.IdUsuarioMod = categoryToUpdate.IdUsuarioMod;
@@ -81,14 +90,40 @@ namespace Hotel.Infraestructure.Repositories
 
         }
 
+        public override void Remove(Categoria entity)
+        {
+            try
+            {
+                Categoria categoriaToRemove = this.GetEntity(entity.Id);
+
+                if(categoriaToRemove is null)
+                
+                    throw new CategoriaException("La Categoria no existe.");
+
+                categoriaToRemove.FechaElimino = entity.FechaElimino;
+                categoriaToRemove.IdUsuarioElimino = entity.IdUsuarioElimino;
+                categoriaToRemove.Eliminado = true;
+
+                this.context.Categoria.Update(categoriaToRemove);
+                this.context.SaveChanges();
+                
+
+            }
+            catch(Exception ex)
+            {
+                this.logger.LogError("", ex.ToString());
+
+            }
+        }
+
         public override bool Exists(Expression<Func<Categoria, bool>> filter)
         {
             return base.Exists(filter);
         }
 
-        public override void Remove(Categoria entity)
+        public override List<Categoria> FindAll(Expression<Func<Categoria, bool>> filter)
         {
-            base.Remove(entity);
+            return base.FindAll(filter);
         }
 
     }
