@@ -14,6 +14,7 @@ namespace Northwind.Domain.Core
             this.EsActivo = true;
             this.Eliminado = false;
         }
+        public int Id {  get; set; }
         public int IdUsuarioCreacion { get; set; }
         public DateTime FechaRegistro { get; set; }
         public int? IdUsuarioMod { get; set; }
