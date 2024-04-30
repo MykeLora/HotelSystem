@@ -118,12 +118,12 @@ namespace Hotel.Infraestructure.Repositories
 
         public override bool Exists(Expression<Func<Categoria, bool>> filter)
         {
-            return base.Exists(filter);
+            return this.context.Categoria.Any(filter);
         }
 
         public override List<Categoria> FindAll(Expression<Func<Categoria, bool>> filter)
         {
-            return base.FindAll(filter);
+            return this.context.Categoria.Where(filter).ToList();
         }
 
     }
