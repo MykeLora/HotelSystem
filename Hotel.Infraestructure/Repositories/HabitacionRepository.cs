@@ -33,14 +33,18 @@ namespace Hotel.Infraestructure.Repositories
             {
                 habitacions = (from hab in this.context.Habitacion
                                join ca in this.context.Categoria on hab.IdCategoria equals ca.Id
-                               join pi in this.context.Piso on hab.IdEstadoHabitacion equals pi.Id
+                               join pi in this.context.Piso on hab.IdPiso equals pi.Id
                                where hab.IdCategoria == categoriaId
                                select new HabitacionModel()
                                {
                                    Descripcion = ca.Descripcion,
                                    Detalle = hab.Detalle,
-                                   Precio = 
-                               }).ToList(); // Agregado ToList() para ejecutar la consulta y obtener los resultados
+                                   Precio = hab.Precio,
+                                   Numero = hab.Numero,
+                                   DescripcionPiso = pi.Descripcion,
+                                   EstadoPiso = pi.Estado
+
+                               }).ToList();
             }
             catch (Exception ex)
             {
@@ -51,12 +55,11 @@ namespace Hotel.Infraestructure.Repositories
             return habitacions;
         }
 
-
         public override void Save(Habitacion entity)
         {
             try
             {
-                if(context.Habitacion.Any(h => h.Id == entity.Id))
+                if (context.Habitacion.Any(h => h.Id == entity.Id))
                 {
                     this.logger.LogWarning("Ya existe una habitacion con ese id");
                 }
@@ -65,7 +68,7 @@ namespace Hotel.Infraestructure.Repositories
                 this.context.SaveChanges();
 
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 this.logger.LogError("Error agregar la habitacion ", ex.ToString());
             }
@@ -79,7 +82,7 @@ namespace Hotel.Infraestructure.Repositories
 
                 var HabitacionToUpdate = this.GetEntity(entity.Id);
 
-                if(HabitacionToUpdate == null)
+                if (HabitacionToUpdate == null)
                 {
                     this.logger.LogWarning("La habitacion no existe");
                 }
@@ -95,7 +98,7 @@ namespace Hotel.Infraestructure.Repositories
                 this.context.Habitacion.Update(HabitacionToUpdate);
                 this.context.SaveChanges();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 this.logger.LogError("Error al actualizar la habitacion", ex.ToString());
             }
@@ -113,7 +116,9 @@ namespace Hotel.Infraestructure.Repositories
 
         public override bool Exists(Expression<Func<Habitacion, bool>> filter)
         {
-            return this.context.Habitacion.Where(filter).ToList();
+            return this.context.Habitacion.Any(filter);
         }
+
     }
+
 }
