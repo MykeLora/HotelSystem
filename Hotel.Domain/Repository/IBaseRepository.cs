@@ -22,5 +22,6 @@ namespace Hotel.Domain.Repository
         bool Exists(Expression<Func<TEntity, bool>> filter);
 
         List<TEntity> FindAll(Expression<Func<TEntity, bool>> filter);
+
     }
 }

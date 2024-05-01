@@ -1,14 +1,10 @@
 ﻿using Hotel.Infraestructure.Context;
 using Hotel.Infraestructure.Core;
 using Hotel.Infraestructure.Interfaces;
+using Hotel.Infraestructure.Models;
 using Microsoft.Extensions.Logging;
 using Northwind.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hotel.Infraestructure.Repositories
 {
@@ -23,6 +19,31 @@ namespace Hotel.Infraestructure.Repositories
             this.logger = logger;
         }
 
+
+        public List<UsuarioModel> GetUsuarioByRol(int IdRolUsuario)
+        {
+            List<UsuarioModel> usuario = new List<UsuarioModel>();
+
+            try
+            {
+                usuario = (from user in this.context.Usuario
+                           join rolUser in this.context.RolUsuario on user.Id equals rolUser.Id
+                           where user.IdRolUsuario == IdRolUsuario
+                           select new UsuarioModel()
+                           {
+                               Descripcion = rolUser.Descripcion,
+                               Estado = rolUser.EsActivo,
+                               Nombre = user.NombreCompleto,
+                               Correo = user.Correo
+                           }).ToList();
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError("Error al obtener la información: " + ex.Message);
+            }
+
+            return usuario;
+        }
 
         public override List<Usuario> GetEntities()
         {
@@ -128,5 +149,7 @@ namespace Hotel.Infraestructure.Repositories
         {
             return this.context.Usuario.Where(filter).ToList();
         }
+
+    
     }
 }
