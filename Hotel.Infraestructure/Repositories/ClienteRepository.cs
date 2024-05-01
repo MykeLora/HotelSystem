@@ -58,7 +58,7 @@ namespace Hotel.Infraestructure.Repositories
 
             }catch(Exception ex)
             {
-                this.logger.LogError("Error al registrar el cliente", ex.ToString();
+                this.logger.LogError("Error al registrar el cliente", ex.ToString());
             }
         }
 
