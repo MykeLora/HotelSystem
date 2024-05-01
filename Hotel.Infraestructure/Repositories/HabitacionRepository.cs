@@ -4,6 +4,8 @@ using Hotel.Infraestructure.Core;
 using Hotel.Infraestructure.Interfaces;
 using Hotel.Infraestructure.Models;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using Northwind.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +57,25 @@ namespace Hotel.Infraestructure.Repositories
             return habitacions;
         }
 
+        public override List<Habitacion> GetEntities()
+        {
+            return base.GetEntities().Where(h => !h.Eliminado).ToList();
+        }
+
+        public override Habitacion GetEntity(int id)
+        {
+            var habitacion = this.context.Habitacion.Find(id);
+
+            if(habitacion is not null)
+            {
+                return habitacion;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public override void Save(Habitacion entity)
         {
             try
@@ -104,9 +125,29 @@ namespace Hotel.Infraestructure.Repositories
             }
         }
 
-        public override List<Habitacion> GetEntities()
+        public override void Remove(Habitacion entity)
         {
-            return base.GetEntities().Where(h => !h.Eliminado).ToList();
+            try
+            {
+                Habitacion habitacionToRemove = this.GetEntity(entity.Id);
+
+                if (habitacionToRemove is  null)
+                {
+                    this.logger.LogError("La habitacion no existe");
+
+                }
+
+                habitacionToRemove.IdUsuarioElimino = habitacionToRemove.IdUsuarioElimino;
+                habitacionToRemove.FechaElimino = entity.FechaElimino;
+                habitacionToRemove.Eliminado = true;
+
+                this.context.Habitacion.Remove(habitacionToRemove);
+                this.context.SaveChanges(); 
+            }
+            catch(Exception ex)
+            {
+                this.logger.LogError("Error al intentar eliminar la habitacion");
+            }
         }
 
         public override List<Habitacion> FindAll(Expression<Func<Habitacion, bool>> filter)

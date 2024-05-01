@@ -94,19 +94,29 @@ namespace Hotel.Infraestructure.Repositories
 
         public override void Remove(Usuario entity)
         {
-            Usuario usuarioToRemove = this.GetEntity(entity.Id);
 
-            if(usuarioToRemove is not null)
+            try
             {
-                this.logger.LogError("El usuario no existe");
+                Usuario usuarioToRemove = this.GetEntity(entity.Id);
+
+                if (usuarioToRemove is null)
+                {
+                    this.logger.LogError("El usuario no existe");
+                }
+
+                usuarioToRemove.IdUsuarioElimino = entity.IdUsuarioElimino;
+                usuarioToRemove.FechaElimino = entity.FechaElimino;
+                usuarioToRemove.Eliminado = true;
+
+                this.context.Usuario.Remove(usuarioToRemove);
+                this.context.SaveChanges();
+
             }
-
-            usuarioToRemove.IdUsuarioElimino = entity.IdUsuarioElimino;
-            usuarioToRemove.FechaElimino = entity.FechaElimino;
-            usuarioToRemove.Eliminado = true;
-
-            this.context.Usuario.Remove(usuarioToRemove);
-            this.context.SaveChanges();
+            catch(Exception ex)
+            {
+                this.logger.LogError("Ha ocurrido un error al eliminar el usuario");
+            }
+        
         }
 
         public override bool Exists(Expression<Func<Usuario, bool>> filter)
