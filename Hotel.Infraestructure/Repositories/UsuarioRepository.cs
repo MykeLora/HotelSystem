@@ -22,7 +22,7 @@ namespace Hotel.Infraestructure.Repositories
 
         public List<UsuarioModel> GetUsuarioByRol(int IdRolUsuario)
         {
-            List<UsuarioModel> usuario = new List<UsuarioModel>();
+            List<UsuarioModel> usuarios = new List<UsuarioModel>();
 
             try
             {
@@ -42,7 +42,7 @@ namespace Hotel.Infraestructure.Repositories
                 this.logger.LogError("Error al obtener la información: " + ex.Message);
             }
 
-            return usuario;
+            return usuarios;
         }
 
         public override List<Usuario> GetEntities()
