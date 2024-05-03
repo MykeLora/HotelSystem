@@ -11,7 +11,7 @@ namespace Northwind.Domain.Core
         public BaseEntity()
         {
             this.FechaRegistro = DateTime.Now;
-            this.EsActivo = true;
+            this.Estado = true;
             this.Eliminado = false;
         }
         public int Id {  get; set; }
@@ -22,6 +22,6 @@ namespace Northwind.Domain.Core
         public int? IdUsuarioElimino { get; set; }
         public DateTime? FechaElimino { get; set; }
         public bool Eliminado { get; set; }
-        public bool? EsActivo { get; set; }
+        public bool? Estado { get; set; }
     }
 }

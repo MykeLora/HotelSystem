@@ -26,7 +26,7 @@ namespace Hotel.Infraestructure.Repositories
 
             try
             {
-                usuario = (from user in this.context.Usuario
+               var usuario = (from user in this.context.Usuario
                            join rolUser in this.context.RolUsuario on user.Id equals rolUser.Id
                            where user.IdRolUsuario == IdRolUsuario
                            select new UsuarioModel()
