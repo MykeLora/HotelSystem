@@ -32,7 +32,7 @@ namespace Hotel.Infraestructure.Repositories
                            select new UsuarioModel()
                            {
                                Descripcion = rolUser.Descripcion,
-                               Estado = rolUser.EsActivo,
+                               Estado = rolUser.Estado,
                                Nombre = user.NombreCompleto,
                                Correo = user.Correo
                            }).ToList();

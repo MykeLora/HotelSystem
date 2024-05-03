@@ -62,7 +62,7 @@ namespace Hotel.Infraestructure.Repositories
                 categoryToUpdate.Descripcion = categoryToUpdate.Descripcion;
                 categoryToUpdate.IdUsuarioMod = categoryToUpdate.IdUsuarioMod;
                 categoryToUpdate.FechaMod = entity.FechaMod;
-                categoryToUpdate.EsActivo = entity.EsActivo;
+                categoryToUpdate.Estado= entity.Estado;
 
                 this.context.Categoria.Update(categoryToUpdate);
                 this.context.SaveChanges();

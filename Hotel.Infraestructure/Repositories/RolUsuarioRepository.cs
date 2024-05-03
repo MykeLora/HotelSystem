@@ -72,7 +72,7 @@ namespace Hotel.Infraestructure.Repositories
                 }
 
                 roluserToUpdate.Descripcion = roluserToUpdate.Descripcion;
-                roluserToUpdate.EsActivo = roluserToUpdate.EsActivo;
+                roluserToUpdate.Estado = roluserToUpdate.Estado;
                 roluserToUpdate.IdUsuarioMod = roluserToUpdate.IdUsuarioMod;
                 roluserToUpdate.FechaMod = entity.FechaMod;
 
