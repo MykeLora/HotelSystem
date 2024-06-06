@@ -1,4 +1,5 @@
 ﻿using Hotel.Infraestructure.Interfaces;
+using Hotel.Infraestructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -7,44 +8,42 @@ namespace Hotel.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HabitacionController : ControllerBase
+    public class CategoriaController : ControllerBase
     {
-        private readonly IHabitacionRepository habitacionRepository;
+        private readonly ICategoryRepository categoryRepository;
 
-        public HabitacionController(IHabitacionRepository habitacionRepository)
+        public CategoriaController(ICategoryRepository categoryRepository)
         {
-            this.habitacionRepository = habitacionRepository;
+            this.categoryRepository = categoryRepository;
         }
-
+        // GET: api/<CategoriaController>
         [HttpGet]
         public IActionResult Get()
         {
-            var habitacion = this.habitacionRepository.GetEntities();
-
-            return Ok(habitacion);
-        
+            var categories = this.categoryRepository.GetEntities();
+            return Ok(categories);
         }
 
-        // GET api/<HabitacionController>/5
+        // GET api/<CategoriaController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<HabitacionController>
+        // POST api/<CategoriaController>
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT api/<HabitacionController>/5
+        // PUT api/<CategoriaController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<HabitacionController>/5
+        // DELETE api/<CategoriaController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

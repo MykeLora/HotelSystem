@@ -39,6 +39,7 @@ namespace Hotel.Infraestructure.Core
 
         public virtual TEntity GetEntity(int id)
         {
+            
             return this.entities.Find(id);
         }
 

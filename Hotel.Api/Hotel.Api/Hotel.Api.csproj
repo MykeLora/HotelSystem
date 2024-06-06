@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Hotel.Infraestructure\Hotel.Infraestructure.csproj" />
+    <ProjectReference Include="..\..\Hotel.Infraestructure\Hotel.Infraestructure.csproj" />
   </ItemGroup>
 
 </Project>

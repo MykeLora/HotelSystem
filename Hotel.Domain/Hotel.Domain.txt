@@ -1,0 +1,17 @@
+﻿// **Agrega el contexto de la base de datos aquí:**
+builder.Services.AddDbContext<HotelContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("HotelContext")));
+
+// Repositorios
+
+builder.Services.AddScoped<ICategoryRepository, CategoriaRepository>();
+
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
+builder.Services.AddScoped<IHabitacionRepository, HabitacionRepository>();
+
+builder.Services.AddScoped<IEstadoHabitacion, EstadoHabitacionRepository>();
+
+  "ConnectionStrings": {
+    "HotelContext": "Server=LAPTOP-GE50K7ST;Database=Hotel;MultipleActiveResultSets=true;"
+  },

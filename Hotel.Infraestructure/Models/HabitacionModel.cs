@@ -16,7 +16,7 @@ namespace Hotel.Infraestructure.Models
         public int? IdCategoria {  get; set; }
         public string? Descripcion { get; set; }
         public string? DescripcionPiso { get; set; }
-        public string? EstadoPiso { get; set; }
+        public bool? EstadoPiso { get; set; }
 
     }
 }
