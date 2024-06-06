@@ -50,8 +50,7 @@ namespace Hotel.Infraestructure.Repositories
             }
             catch (Exception ex)
             {
-                // Manejar la excepción adecuadamente
-                Console.WriteLine($"Error: {ex.Message}");
+                this.logger.LogError("Error obteniendo las habitaciones por su categoria."+ ex.ToString());
             }
 
             return habitacions;
