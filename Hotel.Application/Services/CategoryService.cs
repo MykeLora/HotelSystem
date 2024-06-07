@@ -34,7 +34,7 @@ namespace Hotel.Application.Services
                     {
                         IdCategoria = category.IdCategoria,
                         Descripcion = category.Descripcion,
-                        FechaRegistro = category.FechaRegistro,
+                        FechaRegistro = category.FechaCreacion,
                     }).ToList();
 
                 result.Data = categories;

@@ -19,12 +19,12 @@ namespace Hotel.Api.Controllers
             this.categoryService = categoryService;
         }
         // GET: api/<CategoriaController>
-        [HttpGet]
+        [HttpGet("GetCategories")]
         public IActionResult Get()
         {
             var result = this.categoryService.GetAll();
 
-            if (result is null)
+            if (!result.Success)
             {
                 return BadRequest(result);
             }

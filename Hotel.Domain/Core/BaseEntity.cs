@@ -10,13 +10,12 @@ namespace Northwind.Domain.Core
     {
         public BaseEntity()
         {
-            this.FechaRegistro = DateTime.Now;
+            this.FechaCreacion = DateTime.Now;
             this.Estado = true;
             this.Eliminado = false;
         }
 
-        public int IdUsuarioCreacion { get; set; }
-        public DateTime FechaRegistro { get; set; }
+        public DateTime FechaCreacion { get; set; }
         public int? IdUsuarioMod { get; set; }
         public DateTime? FechaMod { get; set; }
         public int? IdUsuarioElimino { get; set; }

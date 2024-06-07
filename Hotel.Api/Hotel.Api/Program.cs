@@ -26,7 +26,7 @@ builder.Services.AddScoped<IEstadoHabitacion, EstadoHabitacionRepository>();
 
 // Servicios
 
-builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddTransient<ICategoryService, CategoryService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
