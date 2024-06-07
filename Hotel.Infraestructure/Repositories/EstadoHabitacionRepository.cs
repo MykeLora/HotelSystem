@@ -46,7 +46,7 @@ namespace Hotel.Infraestructure.Repositories
         {
             try
             {
-                if(context.EstadoHabitacion.Any(es => es.Id == entity.Id))
+                if(context.EstadoHabitacion.Any(es => es.IdEstadoHabitacion == entity.IdEstadoHabitacion))
                 {
                     this.logger.LogWarning("Estado de la habitacion ocupado");
                 }
@@ -65,7 +65,7 @@ namespace Hotel.Infraestructure.Repositories
         {
             try
             {
-                var EstadoHabToUpdate = this.GetEntity(entity.Id);
+                var EstadoHabToUpdate = this.GetEntity(entity.IdEstadoHabitacion);
 
                 if(EstadoHabToUpdate is null)
                 {
@@ -90,7 +90,7 @@ namespace Hotel.Infraestructure.Repositories
         {
             try
             {
-                EstadoHabitacion estadoHabToRemove = this.GetEntity(entity.Id);
+                EstadoHabitacion estadoHabToRemove = this.GetEntity(entity.IdEstadoHabitacion);
 
                 if(estadoHabToRemove is null)
                 {

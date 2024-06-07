@@ -9,6 +9,6 @@ namespace Hotel.Domain.Entities
 {
     public class EstadoHabitacion : BaseEntity
     {
-        
+        public int IdEstadoHabitacion {  get; set; }
     }
 }

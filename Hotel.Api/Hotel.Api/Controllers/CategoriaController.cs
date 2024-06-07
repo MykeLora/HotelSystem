@@ -1,4 +1,5 @@
-﻿using Hotel.Infraestructure.Interfaces;
+﻿using Hotel.Application.Contract;
+using Hotel.Infraestructure.Interfaces;
 using Hotel.Infraestructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,18 +11,24 @@ namespace Hotel.Api.Controllers
     [ApiController]
     public class CategoriaController : ControllerBase
     {
-        private readonly ICategoryRepository categoryRepository;
 
-        public CategoriaController(ICategoryRepository categoryRepository)
+        private readonly ICategoryService categoryService;
+
+        public CategoriaController(ICategoryService categoryService)
         {
-            this.categoryRepository = categoryRepository;
+            this.categoryService = categoryService;
         }
         // GET: api/<CategoriaController>
         [HttpGet]
         public IActionResult Get()
         {
-            var categories = this.categoryRepository.GetEntities();
-            return Ok(categories);
+            var result = this.categoryService.GetAll();
+
+            if (result is null)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result.Data);
         }
 
         // GET api/<CategoriaController>/5

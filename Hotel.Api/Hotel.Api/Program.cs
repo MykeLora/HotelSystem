@@ -1,3 +1,5 @@
+using Hotel.Application.Contract;
+using Hotel.Application.Services;
 using Hotel.Infraestructure.Context;
 using Hotel.Infraestructure.Interfaces;
 using Hotel.Infraestructure.Repositories;
@@ -21,6 +23,10 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IHabitacionRepository, HabitacionRepository>();
 
 builder.Services.AddScoped<IEstadoHabitacion, EstadoHabitacionRepository>();
+
+// Servicios
+
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

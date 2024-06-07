@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hotel.Application.Core
 {
-    public class ServiceResut<Data>
+    public class ServiceResut<TData>
     {
 
         public bool? Success { get; set; }

@@ -46,7 +46,7 @@ namespace Hotel.Infraestructure.Repositories
         {
             try
             {
-                if(this.context.RolUsuario.Any(ro => ro.Id == entity.Id))
+                if(this.context.RolUsuario.Any(ro => ro.IdRolUsuario == entity.IdRolUsuario))
                 {
                     this.logger.LogWarning("El rol del usuario ya se encuentra registrado");
                 }
@@ -64,7 +64,7 @@ namespace Hotel.Infraestructure.Repositories
         {
             try
             {
-                var roluserToUpdate = this.GetEntity(entity.Id);
+                var roluserToUpdate = this.GetEntity(entity.IdRolUsuario);
 
                 if(roluserToUpdate is null)
                 {
@@ -89,7 +89,7 @@ namespace Hotel.Infraestructure.Repositories
         {
             try
             {
-                RolUsuario rolUsuarioToRemove = this.GetEntity(entity.Id);
+                RolUsuario rolUsuarioToRemove = this.GetEntity(entity.IdRolUsuario);
 
                 if (rolUsuarioToRemove is null)
                 {

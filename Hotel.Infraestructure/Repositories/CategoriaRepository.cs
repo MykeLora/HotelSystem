@@ -33,7 +33,7 @@ namespace Hotel.Infraestructure.Repositories
         {
             try
             {
-                if(context.Categoria.Any(C => C.Id == entity.Id))
+                if(context.Categoria.Any(C => C.IdCategoria == entity.IdCategoria))
                 {
                     this.logger.LogWarning("La categoria ya se encuentra registrada");
                 }
@@ -52,7 +52,7 @@ namespace Hotel.Infraestructure.Repositories
         {
             try
             {
-                var categoryToUpdate = this.GetEntity(entity.Id);
+                var categoryToUpdate = this.GetEntity(entity.IdCategoria);
 
                 if (categoryToUpdate == null)
                 {
@@ -94,7 +94,7 @@ namespace Hotel.Infraestructure.Repositories
         {
             try
             {
-                Categoria categoriaToRemove = this.GetEntity(entity.Id);
+                Categoria categoriaToRemove = this.GetEntity(entity.IdCategoria);
 
                 if(categoriaToRemove is null)
                 

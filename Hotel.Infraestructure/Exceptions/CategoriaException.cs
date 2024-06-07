@@ -23,7 +23,7 @@ namespace Hotel.Infraestructure.Exceptions
         {
         }
 
-        public int? CategoriaId {  get; set; }
-        public string categoriaId { get; set; }
+        public int CategoriaId {  get; set; }
+        
     }
 }

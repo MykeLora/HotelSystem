@@ -10,6 +10,7 @@ namespace Northwind.Domain.Entities
 {
     public class Usuario : Person
     {
+        public int IdUsuario {  get; set; }
         public string? Clave {  get; set; }
         public int? IdRolUsuario {  get; set; }
 

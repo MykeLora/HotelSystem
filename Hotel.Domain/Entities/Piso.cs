@@ -9,7 +9,7 @@ namespace Northwind.Domain.Entities
 {
     public class Piso : BaseEntity
     {
+        public int IdPiso { get; set; }
         public string? Descripcion {  get; set; }
-        public bool? Estado { get; set; }
     }
 }

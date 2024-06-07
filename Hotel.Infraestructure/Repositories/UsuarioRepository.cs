@@ -27,7 +27,7 @@ namespace Hotel.Infraestructure.Repositories
             try
             {
                var usuario = (from user in this.context.Usuario
-                           join rolUser in this.context.RolUsuario on user.Id equals rolUser.Id
+                           join rolUser in this.context.RolUsuario on user.IdUsuario equals rolUser.IdRolUsuario
                            where user.IdRolUsuario == IdRolUsuario
                            select new UsuarioModel()
                            {
@@ -36,13 +36,14 @@ namespace Hotel.Infraestructure.Repositories
                                Nombre = user.NombreCompleto,
                                Correo = user.Correo
                            }).ToList();
+
             }
             catch (Exception ex)
             {
                 this.logger.LogError("Error al obtener la información: " + ex.Message);
             }
-
             return usuarios;
+
         }
 
         public override List<Usuario> GetEntities()
@@ -68,7 +69,7 @@ namespace Hotel.Infraestructure.Repositories
         {
             try
             {
-                if(this.context.Usuario.Any(us => us.Id == entity.Id))
+                if(this.context.Usuario.Any(us => us.IdUsuario == entity.IdUsuario))
                 {
                     this.logger.LogWarning("El usuario ya se encuentra registrado");
                 }
@@ -88,7 +89,7 @@ namespace Hotel.Infraestructure.Repositories
         {
             try
             {
-                var usuarioToUpdate = this.GetEntity(entity.Id);
+                var usuarioToUpdate = this.GetEntity(entity.IdUsuario);
 
                 if (usuarioToUpdate is null)
                 {
@@ -118,7 +119,7 @@ namespace Hotel.Infraestructure.Repositories
 
             try
             {
-                Usuario usuarioToRemove = this.GetEntity(entity.Id);
+                Usuario usuarioToRemove = this.GetEntity(entity.IdUsuario);
 
                 if (usuarioToRemove is null)
                 {

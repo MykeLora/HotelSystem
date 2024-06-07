@@ -47,7 +47,7 @@ namespace Hotel.Infraestructure.Repositories
            
             try
             {
-                if(this.context.Cliente.Any(c => c.Id == entity.Id))
+                if(this.context.Cliente.Any(c => c.IdCliente == entity.IdCliente))
                 {
                     this.logger.LogWarning("El cliente ya se encuentra registrado");
                 }
@@ -66,7 +66,7 @@ namespace Hotel.Infraestructure.Repositories
         {
             try
             {
-                var clienteToUpdate = this.GetEntity(entity.Id);
+                var clienteToUpdate = this.GetEntity(entity.IdCliente);
 
                 if(clienteToUpdate is  null) 
                 {
@@ -93,7 +93,7 @@ namespace Hotel.Infraestructure.Repositories
         {
             try
             {
-                Cliente clienteToRemove = this.GetEntity(entity.Id);
+                Cliente clienteToRemove = this.GetEntity(entity.IdCliente);
 
                 if(clienteToRemove is null)
                 {

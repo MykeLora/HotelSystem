@@ -34,8 +34,8 @@ namespace Hotel.Infraestructure.Repositories
             try
             {
                 habitacions = (from hab in this.context.Habitacion
-                               join ca in this.context.Categoria on hab.IdCategoria equals ca.Id
-                               join pi in this.context.Piso on hab.IdPiso equals pi.Id
+                               join ca in this.context.Categoria on hab.IdCategoria equals ca.IdCategoria
+                               join pi in this.context.Piso on hab.IdPiso equals pi.IdPiso
                                where hab.IdCategoria == categoriaId
                                select new HabitacionModel()
                                {
@@ -79,7 +79,7 @@ namespace Hotel.Infraestructure.Repositories
         {
             try
             {
-                if (context.Habitacion.Any(h => h.Id == entity.Id))
+                if (context.Habitacion.Any(h => h.IdHabitacion == entity.IdHabitacion))
                 {
                     this.logger.LogWarning("Ya existe una habitacion con ese id");
                 }
@@ -100,7 +100,7 @@ namespace Hotel.Infraestructure.Repositories
             try
             {
 
-                var HabitacionToUpdate = this.GetEntity(entity.Id);
+                var HabitacionToUpdate = this.GetEntity(entity.IdHabitacion);
 
                 if (HabitacionToUpdate == null)
                 {
@@ -128,7 +128,7 @@ namespace Hotel.Infraestructure.Repositories
         {
             try
             {
-                Habitacion habitacionToRemove = this.GetEntity(entity.Id);
+                Habitacion habitacionToRemove = this.GetEntity(entity.IdHabitacion);
 
                 if (habitacionToRemove is  null)
                 {
