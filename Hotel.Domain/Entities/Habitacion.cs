@@ -1,6 +1,7 @@
 ﻿using Northwind.Domain.Core;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace Hotel.Domain.Entities
 {
     public  class Habitacion : BaseEntity
     {
+        [Key]
          public int IdHabitacion {  get; set; }
          public string? Numero {  get; set; }
          public string? Detalle {  get; set; }
