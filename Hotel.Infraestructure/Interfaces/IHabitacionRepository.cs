@@ -12,5 +12,7 @@ namespace Hotel.Infraestructure.Interfaces
     public interface IHabitacionRepository : IBaseRepository<Habitacion>
     {
         List<HabitacionModel> GetHabitacionByCategoria(int categoriaId);
+
+        List<PisoModel> GetHabitacionsByPisoId(int IdPiso);
     }
 }
