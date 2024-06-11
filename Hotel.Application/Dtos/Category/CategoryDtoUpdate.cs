@@ -9,5 +9,7 @@ namespace Hotel.Application.Dtos.Category
     public class CategoryDtoUpdate : CategoryDtoBase
     {
         public int IdCategoria { get; set; }
+        public bool? Estado { get; internal set; }
+        public DateTime? FechaMod { get; internal set; }
     }
 }

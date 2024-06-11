@@ -8,6 +8,7 @@ namespace Hotel.Application.Dtos.Category
 {
     public class CategoryDtoBase
     {
+        public int IdCategoria {  get; set; }
         public string? Descripcion { get; set; }
     }
 }

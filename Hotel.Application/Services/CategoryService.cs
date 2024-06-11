@@ -86,20 +86,90 @@ namespace Hotel.Application.Services
 
         }
 
-
         public ServiceResut<CategoryGetModel> Remove(CategoryDtoRemove dtoRemove)
         {
-            throw new NotImplementedException();
+            ServiceResut<CategoryGetModel> result = new ServiceResut<CategoryGetModel>();
+
+            try
+            {
+
+                this.categoryRepository.Remove(new Categoria()
+                {
+                    IdCategoria = dtoRemove.IdCategoria,
+                    IdUsuarioElimino = dtoRemove.IdUsuarioElimino,
+                    FechaElimino = dtoRemove.FechaElimino
+                });
+
+            }
+            catch (Exception)
+            {
+                result.Success = false;
+                result.Message = "Error mientras intentas eliminar la categoria.";
+                this.logger.LogError(result.Message);
+            }
+
+            return result;
         }
 
         public ServiceResut<CategoryGetModel> Save(CategoryDtoAdd dtoAdd)
         {
-            throw new NotImplementedException();
+            ServiceResut<CategoryGetModel> result = new ServiceResut<CategoryGetModel>();
+
+            try
+            {
+                this.categoryRepository.Save(new Categoria()
+                {
+
+                    IdCategoria = dtoAdd.IdCategoria,
+                    Descripcion = dtoAdd.Descripcion,
+                    Estado = dtoAdd.Estado,
+                    FechaCreacion = dtoAdd.FechaCreacion
+
+                });
+
+            }
+            catch (Exception)
+            {
+                result.Success = false;
+                result.Message = "Error al guardar la categoria";
+                this.logger.LogError(result.Message);
+
+            }
+
+            return result;
         }
 
         public ServiceResut<CategoryGetModel> Update(CategoryDtoUpdate dtoUpdate)
         {
-            throw new NotImplementedException();
+            ServiceResut<CategoryGetModel> result = new ServiceResut<CategoryGetModel>();
+
+            try
+            {
+                this.categoryRepository.Update(new Categoria()
+                {
+                    IdCategoria = dtoUpdate.IdCategoria,
+                    Descripcion = dtoUpdate.Descripcion,
+                    Estado = dtoUpdate.Estado,
+                    FechaMod = dtoUpdate.FechaMod
+
+                });
+            }
+            catch (Exception)
+            {
+                result.Success = false;
+                result.Message = "Error actualizando la categoria";
+                this.logger.LogError(result.Message);
+
+            }
+
+            return result;
+        }
+ 
+        private bool IsValid()
+        {
+            ServiceResut<string> result = new ServiceResut<string>();
+
+            return false;
         }
     }
 }

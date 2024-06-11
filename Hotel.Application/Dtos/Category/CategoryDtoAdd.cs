@@ -8,5 +8,7 @@ namespace Hotel.Application.Dtos.Category
 {
     public class CategoryDtoAdd : CategoryDtoBase
     {
+        public bool? Estado { get; internal set; }
+        public DateTime FechaCreacion { get; internal set; }
     }
 }
