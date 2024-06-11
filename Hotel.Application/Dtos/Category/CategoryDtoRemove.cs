@@ -9,5 +9,7 @@ namespace Hotel.Application.Dtos.Category
     public class CategoryDtoRemove
     {
         public int IdCategoria { get; set; }
+        public int IdUsuarioElimino {  get; set; }
+        public DateTime FechaElimino { get; set; }
     }
 }

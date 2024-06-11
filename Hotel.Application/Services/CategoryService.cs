@@ -4,6 +4,7 @@ using Hotel.Application.Dtos.Category;
 using Hotel.Application.Models.Category;
 using Hotel.Infraestructure.Interfaces;
 using Microsoft.Extensions.Logging;
+using Northwind.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,10 +53,41 @@ namespace Hotel.Application.Services
 
         public ServiceResut<CategoryGetModel> GetById(int id)
         {
-            throw new NotImplementedException();
+            ServiceResut<CategoryGetModel> result = new ServiceResut<CategoryGetModel>();
+
+            try
+            {
+                var category = this.categoryRepository.GetEntity(id);
+
+                if(category != null)
+                {
+                    result.Data = new CategoryGetModel
+                    {
+                        IdCategoria = category.IdCategoria,
+                        Descripcion = category.Descripcion,
+                        FechaRegistro = category.FechaCreacion
+                    };
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Message = "La categoria no existe";
+                }
+            }
+            catch (Exception)
+            {
+                result.Success = false;
+                result.Message = "Error al obtener la categoria.";
+                this.logger.LogError(result.Message);
+            }
+
+            return result;
+
+
         }
 
-        public ServiceResut<CategoryGetModel> Remove(CategoryDtoUpdate dtoRemove)
+
+        public ServiceResut<CategoryGetModel> Remove(CategoryDtoRemove dtoRemove)
         {
             throw new NotImplementedException();
         }
@@ -65,7 +97,7 @@ namespace Hotel.Application.Services
             throw new NotImplementedException();
         }
 
-        public ServiceResut<CategoryGetModel> Update(CategoryDtoRemove dtoUpdate)
+        public ServiceResut<CategoryGetModel> Update(CategoryDtoUpdate dtoUpdate)
         {
             throw new NotImplementedException();
         }

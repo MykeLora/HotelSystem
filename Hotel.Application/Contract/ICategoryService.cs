@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Hotel.Application.Contract
 {
-    public interface ICategoryService : IBaseService<CategoryDtoAdd, CategoryDtoUpdate, CategoryDtoRemove,CategoryGetModel >
+    public interface ICategoryService : IBaseService<CategoryDtoAdd, CategoryDtoRemove, CategoryDtoUpdate, CategoryGetModel >
     {
 
     }
