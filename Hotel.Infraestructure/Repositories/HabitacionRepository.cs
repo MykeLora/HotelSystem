@@ -159,6 +159,33 @@ namespace Hotel.Infraestructure.Repositories
             return this.context.Habitacion.Any(filter);
         }
 
-    }
+        public List<HabitacionModel> GetHabitacionsByPisoId(int IdPiso)
+        {
+            List<HabitacionModel> habitacions = new List<HabitacionModel>();
 
+            try
+            {
+                habitacions = (from hab in this.context.Habitacion
+                               join pi in this.context.Piso on hab.IdPiso equals pi.IdPiso
+                               where pi.IdPiso == IdPiso 
+                               select new HabitacionModel()
+                               {
+                                   Detalle = hab.Detalle,
+                                   Numero = hab.Numero,
+                                   DescripcionPiso = pi.Descripcion,
+                                   EstadoPiso = pi.Estado
+
+                               }).ToList();
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError("Error obteniendo las habitaciones por su Id." + ex.ToString());
+            }
+
+            return habitacions;
+        }
+
+    }
 }
+
+

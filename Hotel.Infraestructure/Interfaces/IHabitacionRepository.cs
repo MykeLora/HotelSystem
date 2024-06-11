@@ -13,6 +13,6 @@ namespace Hotel.Infraestructure.Interfaces
     {
         List<HabitacionModel> GetHabitacionByCategoria(int categoriaId);
 
-        List<PisoModel> GetHabitacionsByPisoId(int IdPiso);
+        List<HabitacionModel> GetHabitacionsByPisoId(int IdPiso);
     }
 }
